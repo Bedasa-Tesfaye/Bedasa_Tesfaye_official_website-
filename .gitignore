@@ -1,0 +1,7 @@
+audio/ 
+video/ 
+*.mp4 
+*.mp3 
+*.wav 
+.uploads/ 
+temp.txt 
