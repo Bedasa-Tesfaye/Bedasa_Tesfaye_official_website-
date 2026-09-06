@@ -1,0 +1,1 @@
+export default function SectionHeading({ eyebrow, title, text, light = false }) { return <div className={`section-heading reveal ${light ? 'light' : ''}`}><div className={`eyebrow ${light ? '' : 'dark'}`}><span />{eyebrow}</div><h2>{title}</h2>{text && <p>{text}</p>}</div>; }

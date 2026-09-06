@@ -1,0 +1,2 @@
+import Hero from '../sections/Hero'; import Stats from '../sections/Stats'; import Services from '../sections/Services'; import Solutions from '../sections/Solutions'; import Products from '../sections/Products'; import Projects from '../sections/Projects'; import About from '../sections/About'; import Process from '../sections/Process'; import CTA from '../sections/CTA'; import Contact from '../sections/Contact';
+export default function Home(){return <><Hero /><Stats /><Services /><Solutions /><Products /><Projects /><About /><Process /><CTA /><Contact /></>}
