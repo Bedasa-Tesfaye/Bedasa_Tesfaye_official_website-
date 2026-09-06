@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import profileImage from "../assets/images/imresizer-1728050173793 (1).jpg";
 import "./master-link.css";
 
 const quickLinks = [
@@ -18,8 +19,8 @@ function MasterLinkPage() {
     <div className="links-page">
       <div className="links-container">
         <div className="profile">
-          <div className="profile-image" aria-hidden="true">
-            <span>B</span>
+          <div className="profile-image">
+            <img src={profileImage} alt="Bedasa Tesfaye" />
           </div>
 
           <h1>Bedasa Tesfaye</h1>
