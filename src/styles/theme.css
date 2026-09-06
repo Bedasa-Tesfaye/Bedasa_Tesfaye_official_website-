@@ -1,0 +1,318 @@
+/* =========================================================
+   MICHU DESIGN TOKENS + THEME CONSISTENCY
+   ========================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Brand palette */
+  --navy: #07111f;
+  --navy-2: #0b1728;
+  --navy-3: #10243a;
+  --cyan: #18c8d8;
+  --cyan-2: #64e8ef;
+  --cyan-dark: #12aebe;
+  --orange: #ff9f43;
+
+  /* Light theme surfaces */
+  --white: #ffffff;
+  --ink: #102033;
+  --muted: #607086;
+  --line: #dfe7ef;
+  --surface: #f6f9fc;
+  --card: #ffffff;
+  --shadow: 0 20px 60px rgba(7, 17, 31, 0.1);
+
+  /* Semantic tokens */
+  --accent: var(--cyan);
+  --accent-strong: var(--cyan-dark);
+  --accent-soft: rgba(24, 200, 216, 0.1);
+  --accent-border: rgba(24, 200, 216, 0.22);
+  --accent-glow: rgba(24, 200, 216, 0.08);
+  --text-link: var(--cyan-dark);
+  --btn-primary-text: #06131f;
+  --input-bg: var(--surface);
+  --panel-dark: #0b1b2c;
+  --success: #42e3a1;
+  --warning: #d97706;
+  --header-bg: rgba(7, 17, 31, 0.88);
+  --header-border: rgba(255, 255, 255, 0.08);
+  --footer-bg: #06101c;
+  --placeholder-gradient: linear-gradient(135deg, #0b263b, #0d5061);
+  --radius: 22px;
+  --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --white: #f8fbff;
+  --ink: #eef6ff;
+  --muted: #a5b5c7;
+  --line: #26394e;
+  --surface: #081321;
+  --card: #0d1b2b;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
+
+  --accent-strong: var(--cyan);
+  --text-link: var(--cyan);
+  --input-bg: #0a1524;
+  --panel-dark: #081018;
+}
+
+/* ---------------------------------------------------------
+   Global surfaces
+   --------------------------------------------------------- */
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.stats-strip {
+  background: var(--card) !important;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------
+   Links & accents — one cyan family sitewide
+   --------------------------------------------------------- */
+
+.text-link,
+.product-content a,
+.catalog-breadcrumb a {
+  color: var(--text-link) !important;
+}
+
+.text-link:hover,
+.product-content a:hover,
+.catalog-breadcrumb a:hover {
+  color: var(--accent) !important;
+}
+
+.stats-grid i,
+.service-icon,
+.featured .service-icon,
+.product-note > i,
+.product-icon,
+.values i,
+.detail-card i,
+.contact-card > i,
+.contact-note > i,
+.form-status,
+.process-step i,
+.catalog-category-icon,
+.catalog-product-image-placeholder i,
+.catalog-empty i,
+.catalog-request-confirmation-icon i {
+  color: var(--accent-strong) !important;
+}
+
+.service-card a,
+.catalog-category-label,
+.catalog-product-type,
+.catalog-availability,
+.catalog-detail-category,
+.catalog-request-product span {
+  color: var(--text-link) !important;
+}
+
+.section-heading h2 span,
+.about-panel h2 span,
+.company-copy h2 span,
+.hero h1 span,
+.catalog-results-heading h2 span,
+.catalog-related h2 span {
+  color: var(--accent) !important;
+}
+
+/* ---------------------------------------------------------
+   Buttons — context-aware ghost styling
+   --------------------------------------------------------- */
+
+.btn-ghost {
+  border-color: var(--line);
+  color: var(--ink);
+  background: var(--card);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.hero .btn-ghost,
+.cta-inner .btn-ghost,
+.dark-section .btn-ghost,
+.founder-card .btn-ghost,
+.solution-panel .btn-ghost {
+  border-color: #344a61;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.hero .btn-ghost:hover,
+.cta-inner .btn-ghost:hover,
+.dark-section .btn-ghost:hover,
+.founder-card .btn-ghost:hover,
+.solution-panel .btn-ghost:hover {
+  border-color: #6a829b;
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--btn-primary-text);
+}
+
+/* ---------------------------------------------------------
+   Cards, forms, filters
+   --------------------------------------------------------- */
+
+.service-card,
+.product-card,
+.project-card,
+.contact-card,
+.contact-note,
+.contact-form,
+.detail-card,
+.product-note,
+.catalog-category-card,
+.catalog-product-card,
+.catalog-detail-block,
+.catalog-spec-table,
+.catalog-request-form,
+.catalog-request-confirmation,
+.catalog-empty {
+  background: var(--card);
+  border-color: var(--line);
+}
+
+.service-card li,
+.process-step > span,
+.process-step p,
+.project-meta,
+.detail-card span,
+.contact-card small,
+.eyebrow.dark {
+  color: var(--muted) !important;
+}
+
+.project-filter,
+.catalog-filter,
+.catalog-search input,
+.field input,
+.field textarea,
+.field select,
+.catalog-search-clear,
+.scroll-top {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.field input,
+.field textarea,
+.field select {
+  background: var(--input-bg);
+}
+
+.project-filter.active,
+.project-filter:hover,
+.catalog-filter.active,
+.catalog-filter:hover {
+  background: var(--navy);
+  color: #ffffff;
+  border-color: var(--navy);
+}
+
+.catalog-detail-support,
+.catalog-request-product {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+
+/* ---------------------------------------------------------
+   Dark theme polish for content sections
+   --------------------------------------------------------- */
+
+[data-theme="dark"] .service-card.featured {
+  background: linear-gradient(145deg, #0b1b2d, #0c273a);
+}
+
+[data-theme="dark"] .product-image,
+[data-theme="dark"] .catalog-product-image {
+  background: var(--placeholder-gradient);
+}
+
+[data-theme="dark"] .catalog-product-actions .btn-ghost,
+[data-theme="dark"] .catalog-detail-actions .btn-ghost {
+  border-color: var(--line);
+  color: var(--ink);
+  background: var(--input-bg);
+}
+
+[data-theme="dark"] .catalog-product-actions .btn-ghost:hover,
+[data-theme="dark"] .catalog-detail-actions .btn-ghost:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+}
+
+[data-theme="light"] .catalog-hero {
+  background:
+    radial-gradient(circle at 85% 10%, var(--accent-glow), transparent 28%),
+    var(--surface);
+}
+
+[data-theme="dark"] .catalog-hero {
+  background:
+    radial-gradient(circle at 85% 10%, rgba(24, 200, 216, 0.12), transparent 28%),
+    linear-gradient(180deg, #081321 0%, #0a1727 100%);
+}
+
+[data-theme="dark"] .section-heading h2,
+[data-theme="dark"] .catalog-category-card h3,
+[data-theme="dark"] .catalog-product-body h3,
+[data-theme="dark"] .catalog-detail-summary h1,
+[data-theme="dark"] .catalog-results-heading h2,
+[data-theme="dark"] .catalog-detail-block h2,
+[data-theme="dark"] .catalog-spec-table h3 {
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------
+   Header & footer stay branded dark on all themes
+   --------------------------------------------------------- */
+
+header {
+  background: var(--header-bg) !important;
+  border-bottom: 1px solid var(--header-border);
+}
+
+header.scrolled {
+  background: rgba(7, 17, 31, 0.96) !important;
+}
+
+.footer {
+  background: var(--footer-bg) !important;
+}
+
+/* ---------------------------------------------------------
+   Focus & selection polish
+   --------------------------------------------------------- */
+
+::selection {
+  background: rgba(24, 200, 216, 0.25);
+  color: var(--ink);
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus,
+.catalog-search input:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-glow) !important;
+}
