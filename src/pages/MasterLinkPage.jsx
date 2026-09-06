@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import profileImage from "../assets/images/imresizer-1728050173793 (1).jpg";
 import "./master-link.css";
 
 const quickLinks = [
@@ -18,16 +17,18 @@ function MasterLinkPage() {
   return (
     <div className="links-page">
       <div className="links-container">
-        <div className="profile">
-          <div className="profile-image">
-            <img src={profileImage} alt="Bedasa Tesfaye" />
+        <div className="profile logo-profile">
+          <div className="brand-logo" aria-label="Michu Technology Solution logo">
+            <div className="brand-mark">
+              <span className="mark-left" />
+              <span className="mark-right" />
+              <span className="mark-center" />
+            </div>
+            <div className="brand-wordmark">
+              <span className="word-michu">MICHU</span>
+              <span className="word-sub">TECHNOLOGY SOLUTION</span>
+            </div>
           </div>
-
-          <h1>Bedasa Tesfaye</h1>
-          <div className="profession">IT Professional • Networking • Software &amp; Web Solutions</div>
-          <p className="description">
-            Build practical technology. Solve real problems. Create lasting value.
-          </p>
         </div>
 
         <div className="social-links">
