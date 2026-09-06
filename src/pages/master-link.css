@@ -96,70 +96,6 @@
   max-width: 100%;
 }
 
-.links-page .brand-mark {
-  position: relative;
-  width: 180px;
-  height: 160px;
-  display: block;
-  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.2));
-}
-
-.links-page .brand-mark::before,
-.links-page .brand-mark::after,
-.links-page .mark-left,
-.links-page .mark-right,
-.links-page .mark-center {
-  position: absolute;
-  display: block;
-  content: "";
-}
-
-.links-page .brand-mark::before {
-  width: 82%;
-  height: 82%;
-  left: 6%;
-  top: 10%;
-  background: linear-gradient(135deg, #ff9d00, #f96d00);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  transform: skewY(-20deg);
-  border-radius: 14px;
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08);
-}
-
-.links-page .mark-left {
-  left: 18px;
-  top: 22px;
-  width: 112px;
-  height: 118px;
-  background: #ff8d1e;
-  clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%);
-  border-radius: 8px;
-  transform: skewY(-18deg);
-}
-
-.links-page .mark-right {
-  right: 20px;
-  top: 22px;
-  width: 112px;
-  height: 118px;
-  background: #ff8d1e;
-  clip-path: polygon(42% 0, 100% 0, 100% 100%, 0 100%);
-  border-radius: 8px;
-  transform: skewY(18deg);
-}
-
-.links-page .mark-center {
-  left: 50%;
-  top: 25px;
-  width: 90px;
-  height: 116px;
-  transform: translateX(-50%) skewY(-18deg);
-  background: rgba(255, 255, 255, 0.98);
-  clip-path: polygon(0 0, 100% 0, 54% 100%, 0 100%);
-  border-radius: 8px;
-  opacity: 0.96;
-}
-
 .links-page .brand-wordmark {
   display: flex;
   flex-direction: column;
@@ -172,7 +108,7 @@
   font-weight: 900;
   letter-spacing: -0.08em;
   line-height: 0.9;
-  color: #0d2343;
+  color: #ffffff;
   text-transform: uppercase;
 }
 
@@ -180,7 +116,7 @@
   font-size: clamp(0.8rem, 1.3vw, 1.5rem);
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: #102d4f;
+  color: rgba(255, 255, 255, 0.72);
   text-transform: uppercase;
   margin-top: 8px;
 }

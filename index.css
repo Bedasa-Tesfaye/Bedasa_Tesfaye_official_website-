@@ -45,7 +45,10 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(7,17,31,
 header.scrolled{background:rgba(7,17,31,.96);box-shadow:0 10px 35px rgba(0,0,0,.2)}
 .navbar{height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:inline-flex;align-items:center;gap:11px;color:#fff}
-.brand-icon{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--cyan),#1680b7);display:grid;place-items:center;box-shadow:0 10px 30px rgba(24,200,216,.18)}
+.brand-icon{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;padding:5px;overflow:hidden}
+.brand-icon img{width:100%;height:100%;object-fit:contain;display:block}
+.brand-icon-hero{width:118px;height:104px;padding:10px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.brand-text{display:flex;flex-direction:column}
 .brand strong{display:block;font:800 18px Manrope,sans-serif;letter-spacing:-.02em}
 .brand small{display:block;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#8ea3b8;margin-top:-2px}
 .nav-links{display:flex;list-style:none;gap:4px;align-items:center}
@@ -83,6 +86,7 @@ header.scrolled{background:rgba(7,17,31,.96);box-shadow:0 10px 35px rgba(0,0,0,.
 .hero-visual{position:relative;min-height:470px;display:grid;place-items:center}
 .tech-card{width:min(100%,500px);border:1px solid #29445c;border-radius:26px;background:linear-gradient(145deg,rgba(20,43,64,.88),rgba(8,22,36,.95));box-shadow:0 35px 80px rgba(0,0,0,.3);padding:22px}
 .card-top{display:flex;align-items:center;gap:8px;color:#9bb1c6;font-size:10px;font-weight:800;letter-spacing:.13em}
+.card-logo{width:22px;height:22px;object-fit:contain;display:block}
 .status-dot{width:7px;height:7px;border-radius:50%;background:#42e3a1;box-shadow:0 0 15px #42e3a1}
 .live-pill{margin-left:auto;border:1px solid rgba(66,227,161,.25);color:#67e9ac;padding:4px 7px;border-radius:20px;font-size:8px}
 .network-map{height:300px;position:relative;margin-top:15px}

@@ -1,18 +1,13 @@
 import { Link } from "react-router-dom";
+import BrandLogo from "./BrandLogo";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-main">
         <div className="footer-brand">
-          <Link className="brand" to="/home">
-            <span className="brand-icon">
-              <i className="fas fa-microchip" />
-            </span>
-            <span>
-              <strong>Michu</strong>
-              <small>Technology Solutions</small>
-            </span>
+          <Link className="brand" to="/home" aria-label="Michu Technology Solutions home">
+            <BrandLogo />
           </Link>
           <p>IT, security, networking and digital solutions for modern businesses.</p>
         </div>

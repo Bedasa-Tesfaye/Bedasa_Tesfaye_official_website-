@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import BrandLogo from "../components/BrandLogo";
 import "./master-link.css";
 
 const quickLinks = [
@@ -18,15 +19,11 @@ function MasterLinkPage() {
     <div className="links-page">
       <div className="links-container">
         <div className="profile logo-profile">
-          <div className="brand-logo" aria-label="Michu Technology Solution logo">
-            <div className="brand-mark">
-              <span className="mark-left" />
-              <span className="mark-right" />
-              <span className="mark-center" />
-            </div>
+          <div className="brand-logo" aria-label="Michu Technology Solutions logo">
+            <BrandLogo size="hero" showWordmark={false} />
             <div className="brand-wordmark">
               <span className="word-michu">MICHU</span>
-              <span className="word-sub">TECHNOLOGY SOLUTION</span>
+              <span className="word-sub">TECHNOLOGY SOLUTIONS</span>
             </div>
           </div>
         </div>

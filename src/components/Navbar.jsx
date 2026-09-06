@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { initTheme, toggleTheme as switchTheme } from "../utils/theme";
+import BrandLogo from "./BrandLogo";
 
 const links = [
   ["Home", "/home"],
@@ -42,14 +43,8 @@ export default function Navbar() {
   return (
     <header id="header">
       <nav className="navbar container">
-        <Link className="brand" to="/home" onClick={() => setMenuOpen(false)}>
-          <span className="brand-icon">
-            <i className="fas fa-microchip" />
-          </span>
-          <span>
-            <strong>Michu</strong>
-            <small>Technology Solutions</small>
-          </span>
+        <Link className="brand" to="/home" onClick={() => setMenuOpen(false)} aria-label="Michu Technology Solutions home">
+          <BrandLogo />
         </Link>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
