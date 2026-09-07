@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
+import { useI18n } from "../../i18n/LanguageContext";
 
 export default function RelatedProducts({ products }) {
+  const { t } = useI18n();
+
   if (!products.length) return null;
 
   return (
@@ -9,10 +12,10 @@ export default function RelatedProducts({ products }) {
       <div className="section-heading reveal">
         <div className="eyebrow dark">
           <span />
-          Related products
+          {t("catalog.relatedEyebrow")}
         </div>
         <h2>
-          You may also <span>need.</span>
+          {t("catalog.relatedTitleBefore")} <span>{t("catalog.relatedTitleHighlight")}</span>
         </h2>
       </div>
       <div className="catalog-related-grid">
@@ -21,7 +24,7 @@ export default function RelatedProducts({ products }) {
         ))}
       </div>
       <Link to="/products" className="text-link catalog-related-link">
-        View all categories <i className="fas fa-arrow-right" />
+        {t("catalog.viewAll")} <i className="fas fa-arrow-right" />
       </Link>
     </section>
   );

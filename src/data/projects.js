@@ -1,1 +1,30 @@
-export default [{category:'software systems',style:'project-blue',icon:'fa-layer-group',label:'SOFTWARE',meta:'University • Management System',title:'Internship Management System',text:'A web-based platform designed to streamline internship opportunities, applications, coordination, reports and evaluation.',tags:['React','Node.js','MongoDB']},{category:'web',style:'project-cyan',icon:'fa-globe',label:'WEB DEVELOPMENT',meta:'Business • Digital Presence',title:'Professional Business Website',text:'Responsive corporate website architecture focused on clear service presentation, trust, lead generation and mobile usability.',tags:['HTML','CSS','JavaScript']},{category:'systems',style:'project-orange',icon:'fa-chart-line',label:'BUSINESS SYSTEM',meta:'SME • Operations',title:'Business Management Solutions',text:'Custom management system concepts for sales, inventory, customers, records and day-to-day business operations.',tags:['Web App','Database','Automation']},{category:'software',style:'project-purple',icon:'fa-database',label:'DATABASE',meta:'Data • Information Systems',title:'Database-Driven Application',text:'Structured application architecture for storing, managing and retrieving business information efficiently.',tags:['SQL','Backend','Data']}];
+export default [
+  {
+    id: "internship",
+    category: "software systems",
+    style: "project-blue",
+    icon: "fa-layer-group",
+    tags: ["React", "Node.js", "MongoDB"],
+  },
+  {
+    id: "website",
+    category: "web",
+    style: "project-cyan",
+    icon: "fa-globe",
+    tags: ["HTML", "CSS", "JavaScript"],
+  },
+  {
+    id: "business",
+    category: "systems",
+    style: "project-orange",
+    icon: "fa-chart-line",
+    tags: ["Web App", "Database", "Automation"],
+  },
+  {
+    id: "database",
+    category: "software",
+    style: "project-purple",
+    icon: "fa-database",
+    tags: ["SQL", "Backend", "Data"],
+  },
+];

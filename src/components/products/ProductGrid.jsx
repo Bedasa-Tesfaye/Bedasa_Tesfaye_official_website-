@@ -1,12 +1,16 @@
 import ProductCard from "./ProductCard";
+import { useI18n } from "../../i18n/LanguageContext";
 
-export default function ProductGrid({ products, categoryLabel, emptyMessage = "No products found." }) {
+export default function ProductGrid({ products, categoryLabel, emptyMessage }) {
+  const { t } = useI18n();
+  const message = emptyMessage || t("catalog.emptySearch");
+
   if (!products.length) {
     return (
       <div className="catalog-empty reveal">
         <i className="fas fa-box-open" />
-        <h3>{emptyMessage}</h3>
-        <p>Try another search term or filter, or contact us for a custom equipment recommendation.</p>
+        <h3>{message}</h3>
+        <p>{t("catalog.emptyHint")}</p>
       </div>
     );
   }

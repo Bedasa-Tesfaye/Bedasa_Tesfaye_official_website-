@@ -6,14 +6,13 @@ import CategoryCard from "../../components/products/CategoryCard";
 import ProductGrid from "../../components/products/ProductGrid";
 import ProductSearch from "../../components/products/ProductSearch";
 import SectionHeading from "../../components/SectionHeading";
+import { useI18n } from "../../i18n/LanguageContext";
 
 export default function ProductsIndexPage() {
   const [query, setQuery] = useState("");
+  const { t } = useI18n();
 
-  usePageMeta(
-    "Product Catalog | Michu Technology Solutions",
-    "Browse CCTV, access control, networking, and computer products. Request equipment, installation, and configuration support in Ethiopia."
-  );
+  usePageMeta(t("catalog.seoTitle"), t("catalog.seoDescription"));
 
   const searchResults = useMemo(() => searchProducts(query), [query]);
 
@@ -22,15 +21,15 @@ export default function ProductsIndexPage() {
       <section className="catalog-hero section">
         <div className="container">
           <SectionHeading
-            eyebrow="Product catalog"
+            eyebrow={t("catalog.eyebrow")}
             title={
               <>
-                Technology equipment, <span>professionally supplied.</span>
+                {t("catalog.titleBefore")} <span>{t("catalog.titleHighlight")}</span>
               </>
             }
-            text="Browse CCTV, access control, networking, and computer products. Michu Technology Solutions can supply, install, configure, and support the equipment you need."
+            text={t("catalog.text")}
           />
-          <ProductSearch value={query} onChange={setQuery} placeholder="Search by product name, type, or keyword..." />
+          <ProductSearch value={query} onChange={setQuery} placeholder={t("catalog.searchPlaceholder")} />
         </div>
       </section>
 
@@ -39,11 +38,15 @@ export default function ProductsIndexPage() {
           <div className="container">
             <div className="catalog-results-heading reveal">
               <h2>
-                Search results for <span>"{query}"</span>
+                {t("catalog.resultsFor", { query })}
               </h2>
-              <p>{searchResults.length} product{searchResults.length === 1 ? "" : "s"} found</p>
+              <p>
+                {t(searchResults.length === 1 ? "catalog.found" : "catalog.foundPlural", {
+                  count: String(searchResults.length),
+                })}
+              </p>
             </div>
-            <ProductGrid products={searchResults} emptyMessage="No products found for your search." />
+            <ProductGrid products={searchResults} emptyMessage={t("catalog.emptySearch")} />
           </div>
         </section>
       ) : (

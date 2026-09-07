@@ -3,16 +3,11 @@ import { Link } from "react-router-dom";
 import { COMPANY_CONTACT } from "../../data/contact";
 import generateRequestId from "../../utils/generateRequestId";
 import { openEmailRequest, openWhatsAppRequest } from "../../utils/productRequests";
-
-const INSTALLATION_OPTIONS = [
-  "Supply only",
-  "Supply + installation",
-  "Supply + installation + configuration",
-  "Site survey first",
-  "Not sure yet",
-];
+import { INSTALLATION_OPTION_IDS } from "../../i18n/translations";
+import { useI18n } from "../../i18n/LanguageContext";
 
 export default function ProductRequestForm({ product, categoryLabel, onCancelTo }) {
+  const { t } = useI18n();
   const [submitted, setSubmitted] = useState(false);
   const [requestId, setRequestId] = useState("");
   const [form, setForm] = useState({
@@ -23,7 +18,7 @@ export default function ProductRequestForm({ product, categoryLabel, onCancelTo 
     productName: product?.name || "",
     productId: product?.id || "",
     quantity: "1",
-    installation: INSTALLATION_OPTIONS[1],
+    installation: INSTALLATION_OPTION_IDS[1],
     location: "",
     message: "",
   });
@@ -52,42 +47,39 @@ export default function ProductRequestForm({ product, categoryLabel, onCancelTo 
         <div className="catalog-request-confirmation-icon">
           <i className="fas fa-circle-check" />
         </div>
-        <h2>Thank you. Your product request has been received.</h2>
-        <p>
-          This request has not been stored in a backend yet. Please send it through WhatsApp or email so our team can
-          respond with availability and quotation.
-        </p>
+        <h2>{t("request.thanks")}</h2>
+        <p>{t("request.notStored")}</p>
         <div className="catalog-request-summary">
           <div>
-            <span>Request ID</span>
+            <span>{t("request.requestId")}</span>
             <strong>{requestId}</strong>
           </div>
           <div>
-            <span>Product</span>
+            <span>{t("request.product")}</span>
             <strong>{form.productName}</strong>
           </div>
           <div>
-            <span>Quantity</span>
+            <span>{t("request.quantityLabel")}</span>
             <strong>{form.quantity}</strong>
           </div>
           <div>
-            <span>Customer</span>
+            <span>{t("request.customer")}</span>
             <strong>{form.customerName}</strong>
           </div>
         </div>
         <p className="catalog-request-contact-note">
-          Contact Michu Technology Solutions at {COMPANY_CONTACT.phoneDisplay} or {COMPANY_CONTACT.email}.
+          {t("request.contactNote", { phone: COMPANY_CONTACT.phoneDisplay, email: COMPANY_CONTACT.email })}
         </p>
         <div className="catalog-request-actions">
           <button type="button" className="btn btn-primary" onClick={() => openWhatsAppRequest(form, productForMessage)}>
-            <i className="fab fa-whatsapp" /> Send via WhatsApp
+            <i className="fab fa-whatsapp" /> {t("request.whatsapp")}
           </button>
           <button type="button" className="btn btn-ghost" onClick={() => openEmailRequest(form, productForMessage)}>
-            <i className="fas fa-envelope" /> Request by Email
+            <i className="fas fa-envelope" /> {t("request.emailBtn")}
           </button>
           {onCancelTo && (
             <Link to={onCancelTo} className="btn btn-ghost">
-              Back to product
+              {t("request.back")}
             </Link>
           )}
         </div>
@@ -98,26 +90,26 @@ export default function ProductRequestForm({ product, categoryLabel, onCancelTo 
   return (
     <form className="catalog-request-form reveal" onSubmit={handleSubmit}>
       <div className="catalog-request-product">
-        <span>Selected product</span>
+        <span>{t("request.selected")}</span>
         <strong>{form.productName}</strong>
         <small>{form.productId}</small>
       </div>
 
       <div className="form-row">
         <div className="field">
-          <label htmlFor="customerName">Customer Name *</label>
+          <label htmlFor="customerName">{t("request.customerName")}</label>
           <input
             id="customerName"
             name="customerName"
             type="text"
             value={form.customerName}
             onChange={(event) => updateField("customerName", event.target.value)}
-            placeholder="Full name"
+            placeholder={t("request.fullName")}
             required
           />
         </div>
         <div className="field">
-          <label htmlFor="phone">Phone Number *</label>
+          <label htmlFor="phone">{t("request.phone")}</label>
           <input
             id="phone"
             name="phone"
@@ -132,7 +124,7 @@ export default function ProductRequestForm({ product, categoryLabel, onCancelTo 
 
       <div className="form-row">
         <div className="field">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">{t("request.email")}</label>
           <input
             id="email"
             name="email"
@@ -143,21 +135,21 @@ export default function ProductRequestForm({ product, categoryLabel, onCancelTo 
           />
         </div>
         <div className="field">
-          <label htmlFor="company">Company/Organization</label>
+          <label htmlFor="company">{t("request.company")}</label>
           <input
             id="company"
             name="company"
             type="text"
             value={form.company}
             onChange={(event) => updateField("company", event.target.value)}
-            placeholder="Company name"
+            placeholder={t("request.companyPlaceholder")}
           />
         </div>
       </div>
 
       <div className="form-row">
         <div className="field">
-          <label htmlFor="quantity">Quantity *</label>
+          <label htmlFor="quantity">{t("request.quantity")}</label>
           <input
             id="quantity"
             name="quantity"
@@ -169,16 +161,16 @@ export default function ProductRequestForm({ product, categoryLabel, onCancelTo 
           />
         </div>
         <div className="field">
-          <label htmlFor="installation">Preferred installation/service</label>
+          <label htmlFor="installation">{t("request.installation")}</label>
           <select
             id="installation"
             name="installation"
             value={form.installation}
             onChange={(event) => updateField("installation", event.target.value)}
           >
-            {INSTALLATION_OPTIONS.map((option) => (
+            {INSTALLATION_OPTION_IDS.map((option) => (
               <option key={option} value={option}>
-                {option}
+                {t(`request.installOptions.${option}`)}
               </option>
             ))}
           </select>
@@ -186,40 +178,40 @@ export default function ProductRequestForm({ product, categoryLabel, onCancelTo 
       </div>
 
       <div className="field">
-        <label htmlFor="location">Location</label>
+        <label htmlFor="location">{t("request.location")}</label>
         <input
           id="location"
           name="location"
           type="text"
           value={form.location}
           onChange={(event) => updateField("location", event.target.value)}
-          placeholder="City / area / site location"
+          placeholder={t("request.locationPlaceholder")}
         />
       </div>
 
       <div className="field">
-        <label htmlFor="message">Additional requirements/message</label>
+        <label htmlFor="message">{t("request.message")}</label>
         <textarea
           id="message"
           name="message"
           rows="5"
           value={form.message}
           onChange={(event) => updateField("message", event.target.value)}
-          placeholder="Describe installation needs, timeline, or specifications..."
+          placeholder={t("request.messagePlaceholder")}
         />
       </div>
 
       <div className="catalog-request-actions">
         <button type="submit" className="btn btn-primary submit-btn">
-          <i className="fas fa-paper-plane" /> Submit Request
+          <i className="fas fa-paper-plane" /> {t("request.submit")}
         </button>
         {onCancelTo ? (
           <Link to={onCancelTo} className="btn btn-ghost">
-            Cancel
+            {t("request.cancel")}
           </Link>
         ) : (
           <button type="button" className="btn btn-ghost" onClick={() => window.history.back()}>
-            Cancel
+            {t("request.cancel")}
           </button>
         )}
       </div>

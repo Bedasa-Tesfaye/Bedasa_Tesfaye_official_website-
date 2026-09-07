@@ -1,4 +1,5 @@
 import { COMPANY_CONTACT } from "../data/contact";
+import { INSTALLATION_OPTION_EN } from "../i18n/translations";
 
 export function buildProductRequestMessage(form, product) {
   const categoryName = product?.categoryLabel || product?.category || "General";
@@ -37,7 +38,7 @@ Location:
 ${form.location || "Not provided"}
 
 Preferred installation/service:
-${form.installation || "Not specified"}
+${INSTALLATION_OPTION_EN[form.installation] || form.installation || "Not specified"}
 
 Additional requirements:
 ${form.message || "None"}

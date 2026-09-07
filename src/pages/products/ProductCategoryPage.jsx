@@ -7,12 +7,14 @@ import ProductFilters from "../../components/products/ProductFilters";
 import ProductGrid from "../../components/products/ProductGrid";
 import ProductSearch from "../../components/products/ProductSearch";
 import SectionHeading from "../../components/SectionHeading";
+import { useI18n } from "../../i18n/LanguageContext";
 
 export default function ProductCategoryPage() {
   const { categorySlug } = useParams();
   const category = getCategoryBySlug(categorySlug);
   const [query, setQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
+  const { t } = useI18n();
 
   const categoryProducts = useMemo(
     () => (category ? getProductsByCategory(category.id) : []),
@@ -26,18 +28,16 @@ export default function ProductCategoryPage() {
       if (!matchesFilter) return false;
       if (!normalized) return true;
 
-      const haystack = [
-        product.name,
-        product.type,
-        product.shortDescription,
-        ...(product.keywords || []),
-      ]
+      const haystack = [product.name, product.type, product.shortDescription, ...(product.keywords || [])]
         .join(" ")
         .toLowerCase();
 
       return haystack.includes(normalized);
     });
   }, [categoryProducts, activeFilter, query]);
+
+  const categoryName = category ? t(`categories.${category.id}.name`) : "";
+  const categoryDescription = category ? t(`categories.${category.id}.shortDescription`) : "";
 
   usePageMeta(category?.seoTitle, category?.seoDescription);
 
@@ -50,12 +50,12 @@ export default function ProductCategoryPage() {
       <section className="catalog-hero section">
         <div className="container">
           <div className="catalog-breadcrumb reveal">
-            <Link to="/products">Products</Link>
+            <Link to="/products">{t("nav.products")}</Link>
             <span>/</span>
-            <span>{category.name}</span>
+            <span>{categoryName}</span>
           </div>
-          <SectionHeading eyebrow="Product category" title={<>{category.name}</>} text={category.shortDescription} />
-          <ProductSearch value={query} onChange={setQuery} placeholder={`Search in ${category.name}...`} />
+          <SectionHeading eyebrow={t("catalog.categoryEyebrow")} title={<>{categoryName}</>} text={categoryDescription} />
+          <ProductSearch value={query} onChange={setQuery} placeholder={t("catalog.searchIn", { name: categoryName })} />
           <ProductFilters filters={category.filters} activeFilter={activeFilter} onChange={setActiveFilter} />
         </div>
       </section>
@@ -64,9 +64,13 @@ export default function ProductCategoryPage() {
         <div className="container">
           <div className="catalog-results-heading reveal">
             <h2>
-              Available <span>products</span>
+              {t("catalog.available")} <span>{t("catalog.productsWord")}</span>
             </h2>
-            <p>{filteredProducts.length} product{filteredProducts.length === 1 ? "" : "s"} in this view</p>
+            <p>
+              {t(filteredProducts.length === 1 ? "catalog.inView" : "catalog.inViewPlural", {
+                count: String(filteredProducts.length),
+              })}
+            </p>
           </div>
           <ProductGrid products={filteredProducts} />
         </div>

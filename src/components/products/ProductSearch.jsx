@@ -1,4 +1,8 @@
-export default function ProductSearch({ value, onChange, placeholder = "Search products..." }) {
+import { useI18n } from "../../i18n/LanguageContext";
+
+export default function ProductSearch({ value, onChange, placeholder }) {
+  const { t } = useI18n();
+
   return (
     <div className="catalog-search reveal">
       <i className="fas fa-search" aria-hidden="true" />
@@ -6,11 +10,11 @@ export default function ProductSearch({ value, onChange, placeholder = "Search p
         type="search"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        placeholder={placeholder}
-        aria-label="Search products"
+        placeholder={placeholder || t("catalog.searchPlaceholder")}
+        aria-label={t("catalog.searchAria")}
       />
       {value && (
-        <button type="button" className="catalog-search-clear" onClick={() => onChange("")} aria-label="Clear search">
+        <button type="button" className="catalog-search-clear" onClick={() => onChange("")} aria-label={t("catalog.clearSearch")}>
           <i className="fas fa-xmark" />
         </button>
       )}

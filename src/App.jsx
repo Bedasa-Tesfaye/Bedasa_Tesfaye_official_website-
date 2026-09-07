@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
 import { initTheme } from "./utils/theme";
+import { LanguageProvider } from "./i18n/LanguageContext";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -63,6 +64,7 @@ function SiteLayout() {
 
 function App() {
   return (
+    <LanguageProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MasterLinkPage />} />
@@ -81,6 +83,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </LanguageProvider>
   );
 }
 

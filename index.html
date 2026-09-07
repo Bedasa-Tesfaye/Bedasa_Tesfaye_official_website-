@@ -8,14 +8,17 @@
     <script>
       (function () {
         var theme = localStorage.getItem("michu-theme") || "dark";
+        var lang = localStorage.getItem("michu-lang") || "en";
         document.documentElement.dataset.theme = theme;
+        document.documentElement.lang = lang;
+        document.documentElement.dataset.lang = lang;
         var meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.content = theme === "dark" ? "#07111f" : "#f6f9fc";
       })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/images/brand/michu-favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

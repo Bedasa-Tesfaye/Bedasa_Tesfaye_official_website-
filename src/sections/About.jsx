@@ -1,2 +1,88 @@
-import Button from '../components/Button';
-export default function About(){return <><section id="about" className="section about-section"><div className="container about-grid"><div className="about-panel reveal"><div className="eyebrow dark"><span />About Michu</div><h2>Technology should make business <span>better.</span></h2><p>Michu Technology Solutions is a technology-focused service company built to help organizations solve practical IT, security, networking and digital challenges.</p><p>Our approach is simple: understand the need, recommend the right solution, implement it properly and remain available when support is needed.</p><div className="values">{[['fa-bullseye','Purpose','Useful solutions, not unnecessary complexity.'],['fa-handshake','Trust','Clear communication and dependable service.'],['fa-arrow-trend-up','Growth','Technology that can grow with your business.']].map(([icon,title,text])=><div key={title}><i className={`fas ${icon}`} /><strong>{title}</strong><span>{text}</span></div>)}</div></div><div className="founder-card reveal"><div className="founder-top"><span className="mini-label">FOUNDER & TECHNICAL LEAD</span><span className="founder-badge"><i className="fas fa-check" /> Technology</span></div><div className="founder-avatar">BT</div><h3>Bedasa Tesfaye</h3><p>IT Professional • Networking • Software & Web Solutions</p><div className="founder-skills"><span>Networking</span><span>CCTV</span><span>Web Development</span><span>IT Support</span></div><blockquote>“Build practical technology. Solve real problems. Create lasting value.”</blockquote></div></div></section><section className="company-section"><div className="container company-grid"><div className="company-copy reveal"><div className="eyebrow dark"><span />Company profile</div><h2>A practical technology partner for <span>growing organizations.</span></h2><p>Michu Technology Solutions brings together the infrastructure and digital tools businesses need to work confidently: secure premises, reliable connectivity, supported devices and effective online systems.</p><p>Whether you are opening a new office, upgrading a shop, improving operations or building a digital presence, our team starts with the real need and delivers a solution that is clear, useful and maintainable.</p><Button>Discuss your requirements <i className="fas fa-arrow-right" /></Button></div><div className="company-details reveal">{[['fa-building','What we support','Offices, shops, homes & growing teams'],['fa-puzzle-piece','Our approach','Assess, recommend, install & support'],['fa-shield-heart','Our promise','Clear advice and dependable service']].map(([icon,label,text])=><div className="detail-card" key={label}><i className={`fas ${icon}`} /><div><span>{label}</span><strong>{text}</strong></div></div>)}<div className="company-callout"><span>OUR MISSION</span><p>Make professional technology accessible, reliable and genuinely useful for every client we serve.</p></div></div></div></section></>}
+import Button from "../components/Button";
+import { useI18n } from "../i18n/LanguageContext";
+
+const VALUE_ICONS = ["fa-bullseye", "fa-handshake", "fa-arrow-trend-up"];
+const DETAIL_ICONS = ["fa-building", "fa-puzzle-piece", "fa-shield-heart"];
+
+export default function About() {
+  const { t, copy } = useI18n();
+
+  return (
+    <>
+      <section id="about" className="section about-section">
+        <div className="container about-grid">
+          <div className="about-panel reveal">
+            <div className="eyebrow dark">
+              <span />
+              {t("about.eyebrow")}
+            </div>
+            <h2>
+              {t("about.titleBefore")} <span>{t("about.titleHighlight")}</span>
+            </h2>
+            <p>{t("about.p1")}</p>
+            <p>{t("about.p2")}</p>
+            <div className="values">
+              {copy.about.values.map((value, index) => (
+                <div key={value.title}>
+                  <i className={`fas ${VALUE_ICONS[index]}`} />
+                  <strong>{value.title}</strong>
+                  <span>{value.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="founder-card reveal">
+            <div className="founder-top">
+              <span className="mini-label">{t("about.founderRole")}</span>
+              <span className="founder-badge">
+                <i className="fas fa-check" /> {t("about.founderBadge")}
+              </span>
+            </div>
+            <div className="founder-avatar">BT</div>
+            <h3>Bedasa Tesfaye</h3>
+            <p>{t("about.founderLine")}</p>
+            <div className="founder-skills">
+              {copy.about.skills.map((skill) => (
+                <span key={skill}>{skill}</span>
+              ))}
+            </div>
+            <blockquote>“{t("about.quote")}”</blockquote>
+          </div>
+        </div>
+      </section>
+      <section className="company-section">
+        <div className="container company-grid">
+          <div className="company-copy reveal">
+            <div className="eyebrow dark">
+              <span />
+              {t("about.companyEyebrow")}
+            </div>
+            <h2>
+              {t("about.companyTitleBefore")} <span>{t("about.companyTitleHighlight")}</span>
+            </h2>
+            <p>{t("about.companyP1")}</p>
+            <p>{t("about.companyP2")}</p>
+            <Button href="/contact">
+              {t("about.discuss")} <i className="fas fa-arrow-right" />
+            </Button>
+          </div>
+          <div className="company-details reveal">
+            {copy.about.details.map((detail, index) => (
+              <div className="detail-card" key={detail.label}>
+                <i className={`fas ${DETAIL_ICONS[index]}`} />
+                <div>
+                  <span>{detail.label}</span>
+                  <strong>{detail.text}</strong>
+                </div>
+              </div>
+            ))}
+            <div className="company-callout">
+              <span>{t("about.missionLabel")}</span>
+              <p>{t("about.missionText")}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

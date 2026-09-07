@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { initTheme, toggleTheme as switchTheme } from "../utils/theme";
+import { useI18n } from "../i18n/LanguageContext";
 import BrandLogo from "./BrandLogo";
-
-const links = [
-  ["Home", "/home"],
-  ["Services", "/services"],
-  ["Products", "/products"],
-  ["Solutions", "/home#solutions"],
-  ["Projects", "/projects"],
-  ["About", "/about"],
-  ["Contact", "/contact"],
-];
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState("dark");
   const location = useLocation();
+  const { t } = useI18n();
+
+  const links = [
+    [t("nav.home"), "/home"],
+    [t("nav.services"), "/services"],
+    [t("nav.products"), "/products"],
+    [t("nav.solutions"), "/home#solutions"],
+    [t("nav.projects"), "/projects"],
+    [t("nav.about"), "/about"],
+    [t("nav.contact"), "/contact"],
+  ];
 
   useEffect(() => {
     setTheme(initTheme());
@@ -43,7 +46,7 @@ export default function Navbar() {
   return (
     <header id="header">
       <nav className="navbar container">
-        <Link className="brand" to="/home" onClick={() => setMenuOpen(false)} aria-label="Michu Technology Solutions home">
+        <Link className="brand" to="/home" onClick={() => setMenuOpen(false)} aria-label={t("nav.homeAria")}>
           <BrandLogo />
         </Link>
 
@@ -64,16 +67,17 @@ export default function Navbar() {
         </ul>
 
         <div className="nav-actions">
-          <button className="icon-btn" onClick={toggleTheme} aria-label="Toggle theme">
+          <LanguageSwitcher />
+          <button className="icon-btn" onClick={toggleTheme} aria-label={t("nav.toggleTheme")}>
             <i className={`fas fa-${theme === "dark" ? "sun" : "moon"}`} />
           </button>
           <Link className="nav-cta" to="/contact" onClick={() => setMenuOpen(false)}>
-            Request a Service <i className="fas fa-arrow-right" />
+            {t("nav.requestService")} <i className="fas fa-arrow-right" />
           </Link>
           <button
             className={`hamburger ${menuOpen ? "active" : ""}`}
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Open menu"
+            aria-label={t("nav.openMenu")}
             aria-expanded={menuOpen}
           >
             <span />

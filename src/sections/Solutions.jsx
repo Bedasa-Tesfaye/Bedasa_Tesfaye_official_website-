@@ -1,2 +1,58 @@
-import { useState } from 'react'; import SectionHeading from '../components/SectionHeading'; import solutions from '../data/solutions';
-export default function Solutions(){const[selected,setSelected]=useState('security');const current=solutions[selected];return <section id="solutions" className="section dark-section"><div className="container"><SectionHeading light eyebrow="Business solutions" title={<>One technology partner. <span>Multiple solutions.</span></>} text="We combine infrastructure, security and software so your technology works as one system." /><div className="solution-layout"><div className="solution-tabs reveal">{Object.entries(solutions).map(([key,item],index)=><button className={`solution-tab ${selected===key?'active':''}`} onClick={()=>setSelected(key)} key={key}><span>0{index+1}</span><div><strong>{key==='network'?'Connectivity':key==='digital'?'Digital':key==='support'?'IT Operations':'Security'}</strong><small>{key==='network'?'LAN, Wi-Fi & infrastructure':key==='digital'?'Websites & software':key==='support'?'Support & maintenance':'CCTV & access control'}</small></div><i className="fas fa-arrow-right" /></button>)}</div><div className="solution-panel reveal"><div className="solution-icon"><i className={`fas ${current.icon}`} /></div><span>{current.label}</span><h3>{current.title}</h3><p>{current.text}</p><div className="point-list">{current.points.map(point=><span key={point}><i className="fas fa-check" />{point}</span>)}</div></div></div></div></section>}
+import { useState } from "react";
+import SectionHeading from "../components/SectionHeading";
+import solutions from "../data/solutions";
+import { useI18n } from "../i18n/LanguageContext";
+
+export default function Solutions() {
+  const [selected, setSelected] = useState("security");
+  const current = solutions[selected];
+  const { t, copy } = useI18n();
+  const panel = copy.solutionPanels[selected];
+
+  return (
+    <section id="solutions" className="section dark-section">
+      <div className="container">
+        <SectionHeading
+          light
+          eyebrow={t("solutions.eyebrow")}
+          title={
+            <>
+              {t("solutions.titleBefore")} <span>{t("solutions.titleHighlight")}</span>
+            </>
+          }
+          text={t("solutions.text")}
+        />
+        <div className="solution-layout">
+          <div className="solution-tabs reveal">
+            {Object.entries(solutions).map(([key], index) => (
+              <button className={`solution-tab ${selected === key ? "active" : ""}`} onClick={() => setSelected(key)} key={key}>
+                <span>0{index + 1}</span>
+                <div>
+                  <strong>{t(`solutions.tabs.${key}.title`)}</strong>
+                  <small>{t(`solutions.tabs.${key}.small`)}</small>
+                </div>
+                <i className="fas fa-arrow-right" />
+              </button>
+            ))}
+          </div>
+          <div className="solution-panel reveal">
+            <div className="solution-icon">
+              <i className={`fas ${current.icon}`} />
+            </div>
+            <span>{panel.label}</span>
+            <h3>{panel.title}</h3>
+            <p>{panel.text}</p>
+            <div className="point-list">
+              {panel.points.map((point) => (
+                <span key={point}>
+                  <i className="fas fa-check" />
+                  {point}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

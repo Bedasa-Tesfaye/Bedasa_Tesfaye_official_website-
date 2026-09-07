@@ -1,67 +1,75 @@
 import { Link } from "react-router-dom";
 import SectionHeading from "../components/SectionHeading";
 import homeProducts from "../data/homeProducts";
+import { useI18n } from "../i18n/LanguageContext";
 
 export default function Products() {
+  const { t, copy } = useI18n();
+
   return (
     <section id="products" className="section products-section">
       <div className="container">
         <SectionHeading
-          eyebrow="Technology products"
+          eyebrow={t("products.eyebrow")}
           title={
             <>
-              Quality equipment, <span>properly matched.</span>
+              {t("products.titleBefore")} <span>{t("products.titleHighlight")}</span>
             </>
           }
-          text="We help you choose the right products for your space, needs and budget—then install and configure them so they work from day one."
+          text={t("products.text")}
         />
 
         <div className="product-grid">
-          {homeProducts.map((product) => (
-            <article className="product-card reveal" key={product.title}>
-              <div className={`product-image ${product.route.includes("networking") ? "product-network" : ""}`}>
-                {product.route.includes("networking") ? (
-                  <>
-                    <i className="fas fa-network-wired" />
-                    <span>CONNECTED</span>
-                    <small>ROUTERS · SWITCHES · CABLES</small>
-                  </>
-                ) : (
-                  <div className="catalog-product-image-placeholder visible">
-                    <i className={`fas ${product.icon}`} />
-                    <span>{product.title}</span>
-                    <small>Browse catalog</small>
-                  </div>
-                )}
-                <span className="product-type">{product.type}</span>
-              </div>
-              <div className="product-content">
-                <div className="product-icon">
-                  <i className={`fas ${product.icon}`} />
+          {homeProducts.map((product) => {
+            const slug = product.route.split("/").pop();
+            const category = copy.categories[slug];
+            const items = copy.products.items[slug] || product.items;
+
+            return (
+              <article className="product-card reveal" key={product.title}>
+                <div className={`product-image ${product.route.includes("networking") ? "product-network" : ""}`}>
+                  {product.route.includes("networking") ? (
+                    <>
+                      <i className="fas fa-network-wired" />
+                      <span>{t("products.connected")}</span>
+                      <small>{t("products.networkLine")}</small>
+                    </>
+                  ) : (
+                    <div className="catalog-product-image-placeholder visible">
+                      <i className={`fas ${product.icon}`} />
+                      <span>{category?.name || product.title}</span>
+                      <small>{t("products.browseCatalog")}</small>
+                    </div>
+                  )}
+                  <span className="product-type">{t(`products.types.${slug}`) || product.type}</span>
                 </div>
-                <h3>{product.title}</h3>
-                <p>{product.text}</p>
-                <ul>
-                  {product.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <Link to={product.route}>
-                  Browse catalog <i className="fas fa-arrow-right" />
-                </Link>
-              </div>
-            </article>
-          ))}
+                <div className="product-content">
+                  <div className="product-icon">
+                    <i className={`fas ${product.icon}`} />
+                  </div>
+                  <h3>{category?.name || product.title}</h3>
+                  <p>{category?.shortDescription || product.text}</p>
+                  <ul>
+                    {items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <Link to={product.route}>
+                    {t("products.browseCatalog")} <i className="fas fa-arrow-right" />
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         <div className="product-note reveal">
           <i className="fas fa-circle-info" />
           <p>
-            <strong>Need a recommendation?</strong> Tell us what you are setting up and we will prepare a practical
-            equipment list and quote.
+            <strong>{t("products.needTitle")}</strong> {t("products.needText")}
           </p>
           <Link to="/products" className="text-link">
-            View full product catalog <i className="fas fa-arrow-right" />
+            {t("products.viewFull")} <i className="fas fa-arrow-right" />
           </Link>
         </div>
       </div>

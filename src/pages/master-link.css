@@ -57,6 +57,20 @@
   background: rgba(24, 200, 216, 0.08);
 }
 
+.links-page .links-lang {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.links-page .lang-switch {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+html[data-lang="am"] .links-page {
+  font-family: "Noto Sans Ethiopic", Inter, Arial, Helvetica, sans-serif;
+}
+
 .links-page .links-container {
   position: relative;
   width: 100%;

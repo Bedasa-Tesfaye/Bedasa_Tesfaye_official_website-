@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import ProductImage from "./ProductImage";
-
-function formatPrice(price) {
-  if (!price) return "Contact us for price";
-  return price;
-}
+import { useI18n } from "../../i18n/LanguageContext";
 
 export default function ProductCard({ product, categoryLabel }) {
+  const { t } = useI18n();
   const specEntries = Object.entries(product.specifications || {}).slice(0, 3);
+  const priceLabel = product.price || t("catalog.contactPrice");
 
   return (
     <article className="catalog-product-card reveal">
@@ -30,13 +28,13 @@ export default function ProductCard({ product, categoryLabel }) {
             ))}
           </ul>
         )}
-        <div className="catalog-product-price">{formatPrice(product.price)}</div>
+        <div className="catalog-product-price">{priceLabel}</div>
         <div className="catalog-product-actions">
           <Link to={`/product/${product.id}`} className="btn btn-ghost catalog-btn">
-            View Details
+            {t("catalog.viewDetails")}
           </Link>
           <Link to={`/product/${product.id}/request`} className="btn btn-primary catalog-btn">
-            Request / Order
+            {t("catalog.requestOrder")}
           </Link>
         </div>
         {categoryLabel && <span className="catalog-category-tag">{categoryLabel}</span>}

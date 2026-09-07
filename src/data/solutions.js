@@ -1,1 +1,6 @@
-export default {security:{icon:'fa-shield-halved',label:'SECURITY SYSTEMS',title:'Protect what matters most.',text:'Design and install practical surveillance and access solutions that give you visibility, control and confidence.',points:['CCTV installation','Remote monitoring','Access control','System maintenance']},network:{icon:'fa-network-wired',label:'NETWORK INFRASTRUCTURE',title:'Keep your business connected.',text:'Build stable wired and wireless infrastructure for offices, shops, organizations and growing teams.',points:['LAN installation','Router & switch setup','Wi-Fi optimization','Network troubleshooting']},digital:{icon:'fa-code',label:'DIGITAL SOLUTIONS',title:'Turn ideas into working software.',text:'Create professional websites and custom web-based systems that improve your digital presence and operations.',points:['Business websites','Web applications','Management systems','Custom software']},support:{icon:'fa-headset',label:'IT OPERATIONS',title:'Keep technology working.',text:'Get practical technical support, maintenance and troubleshooting for computers and business IT environments.',points:['Computer setup','Preventive maintenance','Troubleshooting','Technical support']}};
+export default {
+  security: { icon: "fa-shield-halved" },
+  network: { icon: "fa-network-wired" },
+  digital: { icon: "fa-code" },
+  support: { icon: "fa-headset" },
+};
